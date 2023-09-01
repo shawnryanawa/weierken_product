@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>产品手册</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/weierken_porduct_td_css.css' %}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>产品总览</h1>
+        <a href="#" class="btn btn-primary">刷新产品</a>
+    </div>
+
+    <div class="container">
+
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th style="width: 3%">ID</th>
+          <th style="width: 10%">产品名称</th>
+          <th style="width: 8%">分类</th>
+          <th style="width: 36%">图片</th>
+          <th style="width: 30%">简单描述</th>
+          <th style="width: 5%">操作</th>
+          <th style="width: 15%">产品页</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for obj in product_list %}
+        <tr>
+          <th>{{ obj.id }}</th>
+          <td>{{ obj.name }}</td>
+          <td>{{ obj.category }}</td>
+          <td>
+              {% for single_url in obj.image_url_list %}
+                    <a href="{{single_url.strip }}"><img style="height: 60px;width: 60px" src="{{ single_url.strip }}" alt="IMAGE"></a>
+              {% endfor %}
+          </td>
+          <td><div class="scrollable-content" style="height: 100px;">{{ obj.description }}</div></td>
+            <td><a target="_blank" href="/product_detail/{{ obj.id }}/">详细</a></td>
+          <td><a target="_blank" href="{{ obj.product_url }}">Weierken</a></td>
+        </tr>
+
+        {% endfor %}
+
+      </tbody>
+    </table>
+
+    </div>
+</body>
+</html>

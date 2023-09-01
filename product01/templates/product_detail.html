@@ -1,0 +1,111 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ product_obj.name }}</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1-dist/css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+
+
+</head>
+
+<body>
+<div class="container">
+    <div class="col-md-6"><h1>单个产品</h1></div>
+    <div class="col-md-6"><p style="margin-top: 30px" class="text-right"><a href="/product_all/" class="btn btn-primary">返回</a></p></div>
+
+</div>
+
+<div style="margin-top: 50px" class="container">
+    <div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <img src="{{ img_dict.main_img_url }}" alt="Main Image" class="img-responsive">
+      </div>
+    </div>
+
+    <div class="row">
+      {% for singe_img_url in img_dict.other_img_url_list %}
+      <div class="col-xs-4">
+        <div class="thumbnail">
+          <img src="{{ singe_img_url }}" alt="Additional Image 1">
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4>产品名：{{ product_obj.name }}</h4>
+        <h4>SKU：{{ product_obj.sku }}</h4>
+        <h4>类别：{{ product_obj.category }}</h4>
+        <h4>图片数量：{{ product_obj.image_count }}</h4>
+
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h3>参数信息：</h3>
+            <table class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th style="width: 30%">Order(MOQ) :</th>
+                  <th style="width: 70%">{{ product_obj.order }}</th>
+                </tr>
+                <tr>
+                  <th style="width: 30%">Payment :</th>
+                  <th style="width: 70%">{{ product_obj.payment }}</th>
+                </tr>
+                <tr>
+                  <th style="width: 30%">Shipping Port :</th>
+                  <th style="width: 70%">{{ product_obj.shipping_port }}</th>
+                </tr>
+                <tr>
+                  <th style="width: 30%">Lead Time :</th>
+                  <th style="width: 70%">{{ product_obj.lead_time }}</th>
+                </tr>
+                <tr>
+                  <th style="width: 30%">Material :</th>
+                  <th style="width: 70%">{{ product_obj.material }}</th>
+                </tr>
+                <tr>
+                  <th style="width: 30%">Product Size :</th>
+                  <th style="width: 70%">{{ product_obj.product_size }}</th>
+                </tr>
+                <tr>
+                  <th style="width: 30%">Sample time :</th>
+                  <th style="width: 70%">{{ product_obj.sample_time }}</th>
+                </tr>
+              </thead>
+            </table>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4>产品标签：</h4>
+        <p>{{ product_obj.tag }}</p>
+          <br>
+        <h4>短描述：</h4>
+        <p>{{ product_obj.description }}</p>
+          <br>
+        <h4>更多描述：</h4>
+        <p>{{ product_obj.detail }}</p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</div>
+
+
+
+</body>
+</html>
